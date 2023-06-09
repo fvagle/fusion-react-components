@@ -11,9 +11,9 @@ RUN apt-get update \
   && curl -sL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - \
   && apt-get install -y nodejs
 
-COPY . .
+COPY package*.json .
 
 RUN npm ci
-RUN npm run bootstrap
+COPY . .
 RUN npm run build
 RUN npm run --prefix storybook --silent build
